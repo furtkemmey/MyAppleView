@@ -12,6 +12,7 @@
 		7250D7712062443400F64A46 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7250D76F2062443400F64A46 /* Main.storyboard */; };
 		7250D7732062443400F64A46 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7250D7722062443400F64A46 /* Assets.xcassets */; };
 		7250D7762062443400F64A46 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7250D7742062443400F64A46 /* LaunchScreen.storyboard */; };
+		7250D781206247FF00F64A46 /* MyGPS.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 7250D780206247FF00F64A46 /* MyGPS.gpx */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		7250D7722062443400F64A46 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7250D7752062443400F64A46 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7250D7772062443400F64A46 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7250D780206247FF00F64A46 /* MyGPS.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = MyGPS.gpx; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -40,6 +42,7 @@
 			children = (
 				7250D76A2062443400F64A46 /* MyAppleView */,
 				7250D7692062443400F64A46 /* Products */,
+				7250D77D2062447500F64A46 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -59,9 +62,17 @@
 				7250D76F2062443400F64A46 /* Main.storyboard */,
 				7250D7722062443400F64A46 /* Assets.xcassets */,
 				7250D7742062443400F64A46 /* LaunchScreen.storyboard */,
+				7250D780206247FF00F64A46 /* MyGPS.gpx */,
 				7250D7772062443400F64A46 /* Info.plist */,
 			);
 			path = MyAppleView;
+			sourceTree = "<group>";
+		};
+		7250D77D2062447500F64A46 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -97,6 +108,11 @@
 					7250D7672062443400F64A46 = {
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Maps.iOS = {
+								enabled = 0;
+							};
+						};
 					};
 				};
 			};
@@ -125,6 +141,7 @@
 			files = (
 				7250D7762062443400F64A46 /* LaunchScreen.storyboard in Resources */,
 				7250D7732062443400F64A46 /* Assets.xcassets in Resources */,
+				7250D781206247FF00F64A46 /* MyGPS.gpx in Resources */,
 				7250D7712062443400F64A46 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
