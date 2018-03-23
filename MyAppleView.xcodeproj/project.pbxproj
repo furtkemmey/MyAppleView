@@ -13,6 +13,14 @@
 		7250D7732062443400F64A46 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7250D7722062443400F64A46 /* Assets.xcassets */; };
 		7250D7762062443400F64A46 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7250D7742062443400F64A46 /* LaunchScreen.storyboard */; };
 		7250D781206247FF00F64A46 /* MyGPS.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 7250D780206247FF00F64A46 /* MyGPS.gpx */; };
+		7271008F2064C50A00FFABCD /* coffee_to_go.png in Resources */ = {isa = PBXBuildFile; fileRef = 727100882064C50900FFABCD /* coffee_to_go.png */; };
+		727100902064C50A00FFABCD /* 乘龍.png in Resources */ = {isa = PBXBuildFile; fileRef = 727100892064C50900FFABCD /* 乘龍.png */; };
+		727100912064C50A00FFABCD /* 卡比獸.png in Resources */ = {isa = PBXBuildFile; fileRef = 7271008A2064C50900FFABCD /* 卡比獸.png */; };
+		727100922064C50A00FFABCD /* 吉利蛋.png in Resources */ = {isa = PBXBuildFile; fileRef = 7271008B2064C50900FFABCD /* 吉利蛋.png */; };
+		727100932064C50A00FFABCD /* 噴火龍.png in Resources */ = {isa = PBXBuildFile; fileRef = 7271008C2064C50900FFABCD /* 噴火龍.png */; };
+		727100942064C50A00FFABCD /* 快龍.png in Resources */ = {isa = PBXBuildFile; fileRef = 7271008D2064C50900FFABCD /* 快龍.png */; };
+		727100952064C50A00FFABCD /* 水箭龜.png in Resources */ = {isa = PBXBuildFile; fileRef = 7271008E2064C50900FFABCD /* 水箭龜.png */; };
+		72D67C112064CBF300DDC5F4 /* wuling.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 72D67C102064CBF300DDC5F4 /* wuling.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +32,14 @@
 		7250D7752062443400F64A46 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7250D7772062443400F64A46 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7250D780206247FF00F64A46 /* MyGPS.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = MyGPS.gpx; sourceTree = "<group>"; };
+		727100882064C50900FFABCD /* coffee_to_go.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = coffee_to_go.png; sourceTree = "<group>"; };
+		727100892064C50900FFABCD /* 乘龍.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "乘龍.png"; sourceTree = "<group>"; };
+		7271008A2064C50900FFABCD /* 卡比獸.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "卡比獸.png"; sourceTree = "<group>"; };
+		7271008B2064C50900FFABCD /* 吉利蛋.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "吉利蛋.png"; sourceTree = "<group>"; };
+		7271008C2064C50900FFABCD /* 噴火龍.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "噴火龍.png"; sourceTree = "<group>"; };
+		7271008D2064C50900FFABCD /* 快龍.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "快龍.png"; sourceTree = "<group>"; };
+		7271008E2064C50900FFABCD /* 水箭龜.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "水箭龜.png"; sourceTree = "<group>"; };
+		72D67C102064CBF300DDC5F4 /* wuling.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = wuling.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +73,7 @@
 		7250D76A2062443400F64A46 /* MyAppleView */ = {
 			isa = PBXGroup;
 			children = (
+				727100872064C50900FFABCD /* images */,
 				7250D76B2062443400F64A46 /* AppDelegate.swift */,
 				7250D76D2062443400F64A46 /* ViewController.swift */,
 				7250D76F2062443400F64A46 /* Main.storyboard */,
@@ -73,6 +90,21 @@
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		727100872064C50900FFABCD /* images */ = {
+			isa = PBXGroup;
+			children = (
+				72D67C102064CBF300DDC5F4 /* wuling.jpg */,
+				727100882064C50900FFABCD /* coffee_to_go.png */,
+				727100892064C50900FFABCD /* 乘龍.png */,
+				7271008A2064C50900FFABCD /* 卡比獸.png */,
+				7271008B2064C50900FFABCD /* 吉利蛋.png */,
+				7271008C2064C50900FFABCD /* 噴火龍.png */,
+				7271008D2064C50900FFABCD /* 快龍.png */,
+				7271008E2064C50900FFABCD /* 水箭龜.png */,
+			);
+			path = images;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -139,10 +171,18 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				727100932064C50A00FFABCD /* 噴火龍.png in Resources */,
+				727100912064C50A00FFABCD /* 卡比獸.png in Resources */,
+				727100902064C50A00FFABCD /* 乘龍.png in Resources */,
+				7271008F2064C50A00FFABCD /* coffee_to_go.png in Resources */,
 				7250D7762062443400F64A46 /* LaunchScreen.storyboard in Resources */,
+				727100942064C50A00FFABCD /* 快龍.png in Resources */,
 				7250D7732062443400F64A46 /* Assets.xcassets in Resources */,
+				72D67C112064CBF300DDC5F4 /* wuling.jpg in Resources */,
 				7250D781206247FF00F64A46 /* MyGPS.gpx in Resources */,
+				727100952064C50A00FFABCD /* 水箭龜.png in Resources */,
 				7250D7712062443400F64A46 /* Main.storyboard in Resources */,
+				727100922064C50A00FFABCD /* 吉利蛋.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -292,6 +332,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = MyAppleView/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = tw.com.yvtc.HKC.MyAppleView;
@@ -306,6 +347,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = MyAppleView/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = tw.com.yvtc.HKC.MyAppleView;
