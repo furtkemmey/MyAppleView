@@ -13,6 +13,7 @@ import SafariServices
 
 class ViewController: UIViewController {
     let localManager = CLLocationManager()
+    var selectedPinLocation: CLLocationCoordinate2D!
 
     @IBOutlet weak var lblDirection: UILabel!
     @IBOutlet weak var lblAltitude: UILabel!
@@ -39,8 +40,8 @@ class ViewController: UIViewController {
         //Make a Annotation
         var annotation = MKPointAnnotation()
         annotation.coordinate = CLLocationCoordinate2D(latitude: 24.137426, longitude: 121.275753)
-        annotation.title = "武嶺"
-        annotation.subtitle = "仁愛鄉"
+        annotation.title = "乘龍"
+        annotation.subtitle = "仁愛鄉 "
 
         mapView.showsUserLocation = true
         mapView.addAnnotation(annotation)
@@ -50,14 +51,14 @@ class ViewController: UIViewController {
         //1st
         annotation = MKPointAnnotation()
         annotation.coordinate = CLLocationCoordinate2D(latitude: 23.510041, longitude: 120.700458)
-        annotation.title = "奮起湖"
+        annotation.title = "卡比獸"
         annotation.subtitle = "嘉義縣竹崎鄉"
         arrAnnotation.append(annotation)
 
         //2st
         annotation = MKPointAnnotation()
         annotation.coordinate = CLLocationCoordinate2D(latitude: 21.948331, longitude: 120.779752)
-        annotation.title = "墾丁"
+        annotation.title = "噴火龍"
         annotation.subtitle = "屏東縣恆春鄉"
         arrAnnotation.append(annotation)
 
@@ -116,49 +117,68 @@ extension ViewController: MKMapViewDelegate {
         if annotation is MKUserLocation {
             return nil
         }
-//        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "Pin") as? MKPinAnnotationView
-//        if annotationView == nil {
-//            annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "Pin")
-//        }
-//        if annotation.title! == "武嶺" {
-//            annotationView!.pinTintColor = MKPinAnnotationView.greenPinColor()
-//            annotationView?.canShowCallout = true
-//        }
-//        if annotation.title! == "奮起湖" {
-//            annotationView!.pinTintColor = UIColor.orange
-//            annotationView?.canShowCallout = true
-//        }
+
         var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "Pin")
         if annotationView == nil {
             annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: "Pin")
-            annotationView!.image = UIImage(named: "coffee_to_go.png")
             annotationView?.canShowCallout = true
         }
-        if annotation.title! == "武嶺" {
-            let imageView = UIImageView(image: UIImage(named: "wuling.jpg"))
-//            imageView.contentMode = .scaleToFill
-//            imageView.clipsToBounds = true
-            annotationView?.leftCalloutAccessoryView = imageView // Left callout
 
-            // add label
-            let label = UILabel()
-            label.numberOfLines = 2
-            label.text = "lat: \(annotation.coordinate.latitude)\n lon:\(annotation.coordinate.longitude)"
-            annotationView?.detailCalloutAccessoryView = label
-            // add button
-            let button = UIButton(type: .detailDisclosure)
-            button.tag = 100
-            button.addTarget(self, action: #selector(calloutButtonPressed(_:)), for: .touchUpInside)
-            annotationView?.rightCalloutAccessoryView = button // Right
-        }
+        prepareForAnnotationView(annotation: annotation, annotationView: annotationView, fileName: annotation.title!!)
+//        if annotation.title! == "卡比獸" {
+//            annotationView!.image = UIImage(named: "卡比獸.png")
+//            let imageView = UIImageView(image: UIImage(named: "卡比獸.png"))
+//            //            imageView.frame = (annotationView?.frame)!
+//            //            imageView.contentMode = .scaleToFill
+//            //            imageView.clipsToBounds = true
+//            annotationView?.leftCalloutAccessoryView = imageView // Left callout
+//
+//            // add label
+//            let label = UILabel()
+//            label.numberOfLines = 2
+//            label.text = "lat: \(annotation.coordinate.latitude)\n lon:\(annotation.coordinate.longitude)"
+//            annotationView?.detailCalloutAccessoryView = label
+//            // add button
+//            let button = UIButton(type: .detailDisclosure)
+//            button.tag = 100
+//            button.addTarget(self, action: #selector(calloutButtonPressed(_:)), for: .touchUpInside)
+//            annotationView?.rightCalloutAccessoryView = button // Right
+//        }
         return annotationView
     }
+    func prepareForAnnotationView(annotation: MKAnnotation, annotationView: MKAnnotationView?, fileName: String){
+        if annotationView == nil { return }
+        annotationView?.image = UIImage(named: fileName + ".png")
+        let imageView = UIImageView(image: UIImage(named: fileName + ".png"))
+        //            imageView.frame = (annotationView?.frame)!
+        //            imageView.contentMode = .scaleToFill
+        //            imageView.clipsToBounds = true
+        annotationView?.leftCalloutAccessoryView = imageView // Left callout
+
+        // add label
+        let label = UILabel()
+        label.numberOfLines = 2
+        label.text = "lat: \(annotation.coordinate.latitude)\n lon:\(annotation.coordinate.longitude)"
+        annotationView?.detailCalloutAccessoryView = label
+        // add button
+        let button = UIButton(type: .roundedRect)
+        button.frame = CGRect(x: 0, y: 0, width: 80, height: 80)
+        button.setTitle("Navagate", for: .normal)
+        button.addTarget(self, action: #selector(calloutButtonPressed(_:)), for: .touchUpInside)
+        annotationView?.rightCalloutAccessoryView = button // Right
+    }
     @objc func calloutButtonPressed (_ sender:UIButton) {
-        if sender.tag == 100 {
-            let url = URL(string: "http://www.taroko.gov.tw")
-            let safari = SFSafariViewController(url: url!)
-            show(safari, sender: self)
-        }
+        let currentMAPItem = MKMapItem.forCurrentLocation()
+        let markDestination = MKPlacemark(coordinate: selectedPinLocation)
+        let destMapItem = MKMapItem(placemark: markDestination)
+        destMapItem.name = "導航終點"
+        let arrNavi = [currentMAPItem, destMapItem]
+        let optionNamvi = [MKLaunchOptionsDirectionsModeKey:MKLaunchOptionsDirectionsModeDriving]
+//        MKMapItem.openMaps(with: arrNavi, launchOptions: optionNamvi)
+        destMapItem.openInMaps(launchOptions: optionNamvi)
+    }
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        selectedPinLocation = view.annotation!.coordinate
     }
 }
 
