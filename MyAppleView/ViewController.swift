@@ -21,6 +21,24 @@ class ViewController: UIViewController {
     @IBOutlet weak var lblLongtutued: UILabel!
     @IBOutlet weak var mapView: MKMapView!
 
+
+    @IBAction func segmentedControlPressed(_ sender: UISegmentedControl) {
+        switch sender.selectedSegmentIndex {
+        case 1:
+            mapView.mapType = .satellite
+        case 2:
+            mapView.mapType = .hybrid
+        case 3:
+            let ground = CLLocationCoordinate2D(latitude: CLLocationDegrees(lblLatitude.text!)!, longitude: CLLocationDegrees(lblLongtutued.text!)!)
+            let eyeFrom = CLLocationCoordinate2D(latitude: CLLocationDegrees(lblLatitude.text!)!+0.005, longitude: CLLocationDegrees(lblLongtutued.text!)!)
+            let camera = MKMapCamera(lookingAtCenter: ground, fromEyeCoordinate: eyeFrom, eyeAltitude: 30)
+            mapView.mapType = .satelliteFlyover
+            mapView.isPitchEnabled = true
+            mapView.camera = camera
+        default:
+            mapView.mapType = .standard
+        }
+    }
     // MARK: - Public
 //    @objc func calloutButtonPressed (_ sender:UIButton) {
 //        if sender.tag == 100 {
