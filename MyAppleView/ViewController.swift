@@ -60,7 +60,7 @@ class ViewController: UIViewController {
         annotation.coordinate = CLLocationCoordinate2D(latitude: 24.137426, longitude: 121.275753)
         annotation.title = "乘龍"
         annotation.subtitle = "仁愛鄉 "
-
+//config mapVie
         mapView.showsUserLocation = true
         mapView.addAnnotation(annotation)
 //        mapView.setCenter(annotation.coordinate, animated: false)
@@ -88,6 +88,7 @@ class ViewController: UIViewController {
         points.append(CLLocationCoordinate2D(latitude: 24.20440, longitude: 120.65590))
         points.append(CLLocationCoordinate2D(latitude: 24.13800, longitude: 120.64010))
         points.append(CLLocationCoordinate2D(latitude: 24.14240, longitude: 120.57830))
+//      or MKCircle
         let polygon = MKPolygon(coordinates: &points, count: 4)
         mapView.add(polygon) // need display overlay delegate "render"
     }
@@ -98,20 +99,37 @@ class ViewController: UIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        // location
         localManager.startUpdatingLocation()
+        // heading
         localManager.startUpdatingHeading()
+
+        // make regin, need set mapView.centerCoordinate
+        let viewRegin = MKCoordinateRegionMakeWithDistance(mapView.userLocation.coordinate, 500, 500)
+        mapView.setRegion(viewRegin, animated: true)
     }
     override func viewWillDisappear(_ animated: Bool) {
         localManager.stopUpdatingLocation()
         localManager.stopUpdatingHeading()
     }
 }
+// MARK: - CLLocationManagerDelegate
 extension ViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let aLocation = locations.first
         lblAltitude.text = String(format: "%.5f", (aLocation?.altitude)!)
         lblLatitude.text = "\(String(describing: aLocation?.coordinate.latitude))"
         lblLongtutued.text = "\(String(describing: aLocation?.coordinate.longitude))"
+        // centerCoordinate
+        mapView.centerCoordinate = aLocation!.coordinate
+        // get address from coordinate
+        let geocoder = CLGeocoder()
+        geocoder.reverseGeocodeLocation(aLocation!) { (placemarks, error) in
+            guard error == nil else { return}
+            guard placemarks != nil else { return}
+            let aPlacemark = placemarks?.first!
+            
+        }
     }
 //    updateHeading
     func locationManager(_ manager: CLLocationManager, didUpdateHeading newHeading: CLHeading) {
@@ -139,6 +157,7 @@ extension ViewController: CLLocationManagerDelegate {
         }
     }
 }
+
 extension ViewController: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         if annotation is MKUserLocation {
