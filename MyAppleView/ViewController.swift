@@ -81,6 +81,15 @@ class ViewController: UIViewController {
         arrAnnotation.append(annotation)
 
         mapView.addAnnotations(arrAnnotation)
+
+        // make an area
+        var points = [CLLocationCoordinate2D]()
+        points.append(CLLocationCoordinate2D(latitude: 24.20113, longitude: 120.58100))
+        points.append(CLLocationCoordinate2D(latitude: 24.20440, longitude: 120.65590))
+        points.append(CLLocationCoordinate2D(latitude: 24.13800, longitude: 120.64010))
+        points.append(CLLocationCoordinate2D(latitude: 24.14240, longitude: 120.57830))
+        let polygon = MKPolygon(coordinates: &points, count: 4)
+        mapView.add(polygon) // need display overlay delegate "render"
     }
 
     override func didReceiveMemoryWarning() {
@@ -197,6 +206,16 @@ extension ViewController: MKMapViewDelegate {
     }
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         selectedPinLocation = view.annotation!.coordinate
+    }
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+        // set render area
+        let render = MKPolygonRenderer(overlay: overlay)
+        if overlay is MKPolygon {
+            render.fillColor = UIColor.red.withAlphaComponent(0.2)
+            render.strokeColor = UIColor.red.withAlphaComponent(0.7)
+            render.lineWidth = 3
+        }
+        return render
     }
 }
 
