@@ -128,7 +128,13 @@ extension ViewController: CLLocationManagerDelegate {
             guard error == nil else { return}
             guard placemarks != nil else { return}
             let aPlacemark = placemarks?.first!
-            
+            print(aPlacemark?.administrativeArea ?? " ") // administrative
+            print(aPlacemark?.subAdministrativeArea ?? " ")
+            print(aPlacemark?.postalCode ?? " ")
+            print(aPlacemark?.locality ?? " ") // city
+            print(aPlacemark?.subLocality ?? " ")
+            print(aPlacemark?.thoroughfare ?? " ") //street
+            print(aPlacemark?.subThoroughfare ?? " ")
         }
     }
 //    updateHeading
@@ -190,6 +196,8 @@ extension ViewController: MKMapViewDelegate {
 //            button.addTarget(self, action: #selector(calloutButtonPressed(_:)), for: .touchUpInside)
 //            annotationView?.rightCalloutAccessoryView = button // Right
 //        }
+        annotationView?.canShowCallout = true
+        annotationView?.isDraggable = true
         return annotationView
     }
     func prepareForAnnotationView(annotation: MKAnnotation, annotationView: MKAnnotationView?, fileName: String){
@@ -224,7 +232,9 @@ extension ViewController: MKMapViewDelegate {
         destMapItem.openInMaps(launchOptions: optionNamvi)
     }
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-        selectedPinLocation = view.annotation!.coordinate
+        print("大頭針被點選didSelect")
+        selectedPinLocation = view.annotation!.coordinate // 記錄起來
+        mapView.removeAnnotation(view.annotation!)
     }
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         // set render area
@@ -235,6 +245,9 @@ extension ViewController: MKMapViewDelegate {
             render.lineWidth = 3
         }
         return render
+    }
+    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, didChange newState: MKAnnotationViewDragState, fromOldState oldState: MKAnnotationViewDragState) {
+        print("拖曳後移動座標")
     }
 }
 
